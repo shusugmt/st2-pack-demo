@@ -1,0 +1,25 @@
+---
+enabled: true
+name: remote-install-sl
+runner_type: remote-shell-cmd
+parameters:
+  hosts:
+    default: 192.168.33.10
+  username:
+    default: vagrant
+  password:
+    default: vagrant
+  cwd:
+    default: /
+  cmd:
+    default: |
+      set -eux
+      TMPDIR=$(mktemp -d)
+      cd $TMPDIR
+      git clone https://github.com/mtoyoda/sl
+      cd sl
+      make
+      sudo cp sl /usr/local/bin
+      # cleanup working directory
+      cd /
+      rm -Rf $TMPDIR

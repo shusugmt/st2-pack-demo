@@ -1,0 +1,23 @@
+version: 1.0
+
+tasks:
+  mktemp:
+    action: demo.remote-mktemp
+    next:
+      - when: "{{ succeeded() }}"
+        publish:
+          - tmpdir: "{{ jsonpath_query(result(), '*.stdout')[0] }}"
+        do: build
+
+  build:
+    action: demo.remote-build
+    input:
+      cwd: "{{ ctx().tmpdir }}"
+    next:
+      - when: "{{ succeeded() }}"
+        do: cleanup
+
+  cleanup:
+    action: demo.remote-cleanup
+    input:
+      target_path: "{{ ctx().tmpdir }}"

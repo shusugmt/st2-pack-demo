@@ -1,0 +1,5 @@
+---
+enabled: true
+name: input-output-chaining
+runner_type: orquesta
+entry_point: workflows/input-output-chaining.yaml

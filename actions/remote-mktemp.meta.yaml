@@ -1,0 +1,13 @@
+---
+enabled: true
+name: remote-mktemp
+runner_type: remote-shell-cmd
+parameters:
+  hosts:
+    default: 192.168.33.10
+  username:
+    default: vagrant
+  password:
+    default: vagrant
+  cmd:
+    default: mktemp -d

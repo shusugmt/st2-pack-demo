@@ -1,0 +1,17 @@
+---
+enabled: true
+name: remote-build
+runner_type: remote-shell-cmd
+parameters:
+  hosts:
+    default: 192.168.33.10
+  username:
+    default: vagrant
+  password:
+    default: vagrant
+  cmd:
+    default: |
+      git clone https://github.com/mtoyoda/sl
+      cd sl
+      make
+      sudo cp sl /usr/local/bin
